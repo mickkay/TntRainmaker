@@ -1,0 +1,143 @@
+[p]This is the homepage of the TNT-Rainmaker Mod.
+TNT-Rainmaker is a Forge-based modification of Minecraft.
+
+[img]http://i.imgur.com/uoQIu3w.png?1[/img]
+
+Do you want to have some great panic in your game?
+Then let it rain TNT - with the [b]TNT-Rainmaker Mod[/b]!
+
+The TNT-Rainmaker Mod adds the "tnt" command to your Minecraft game.
+With this command you can create huge clouds of ignited TNT blocks in the sky, directly high above the heads of all players.
+
+[p][b]How to Use:[/b][/p]
+Just type
+[font=andale mono,monospace]/tnt on[/font]
+and hell breaks loose.
+
+[p][b]Here's the command usage:[/b][/p]
+[font=andale mono,monospace]/tnt on [player]
+/tnt off [player]
+/tnt set drops [number between 1 and 100]
+/tnt set area [number between 1 and 20]
+/tnt set chance [number between 1 and 100]
+[/font]
+[p][/p]
+[p][i]You can find a brief description of all command options inside the Command Manual section below.[/i][/p]
+[p]
+
+[p][b]TNT-Rainmaker runs in:[/b][/p] 
+[list]
+[*][b]Singleplayer[/b], if you have a client-side installation of Forge and TNT-Rainmaker. Make sure that you play a world created with "Allow Cheats: ON", or you won't be allowed to use the tnt command.
+[*][b]Multiplayer[/b], if you have a server-side installation of Forge and TNT-Rainmaker. No client-side installation of TNT-Rainmaker required. However, with Forge 10.x we still need a client-side installation of Forge. Make sure that you have operator privileges, or you won't be allowed to use the tnt command.
+[/list]
+
+[/p]
+[p][b]Latest Changes (1.1.0):[/b][/p]
+[list]
+[*]Renamed from TNT-Rain to TNT-Rainmaker (since there was already a mod with that name)
+[/list]
+[p][b]Download:[/b][/p]
+[list]
+[*][url=http://www.mediafire.com/download/j9t5id7of654jc4/tnt-rainmaker-1.7.10-1.1.0.jar]TNT-Rainmaker 1.1.0[/url]
+[/list]
+[p][b]Requirements:[/b][/p]
+[list]
+[*]This mod has been created for Minecraft 1.7.10
+[*]and Minecraft Forge 10.13.0.1180
+[/list]
+[p][i]You can find links to all versions inside the Release History section below.[/i][/p]
+
+[spoiler=Command Manual]
+[b]Start the rain:[/b]
+[p][indent=30px][font=andale mono,monospace]/tnt on[/font][indent][/p]
+[i]This starts the TNT rain above the heads of all players.[/i]
+
+[p][b]Start the rain just for one player:[/b][/p]
+[p][indent=30px][font=andale mono,monospace]/tnt on peter[/font][indent][/p]
+[i]This starts the TNT rain only above peter. Haha :-D[/i]
+
+[p][b]Start the rain for a group of players:[/b][/p]
+[p][indent=30px][font=andale mono,monospace]/tnt on peter paul mary[/font][indent][/p]
+[i]This starts the TNT rain only above peter, paul, and mary.[/i]
+
+[p][b]Stop the rain:[/b][/p]
+[p][indent=30px][font=andale mono,monospace]/tnt off[/font][indent][/p]
+[i]This stops the TNT rain for all players.
+Please note that this does not remove ignited TNT blocks which are already falling from the sky.[/i]
+
+[p][b]Stop the rain for one player:[/b][/p]
+[p][indent=30px][font=andale mono,monospace]/tnt off peter[/font][indent][/p]
+[i]This stops the TNT rain just for peter.[/i]
+
+[p][b]Stop the rain for a group of players:[/b][/p]
+[p][indent=30px][font=andale mono,monospace]/tnt off peter paul mary[/font][indent][/p]
+[i]This stops the TNT rain only for peter, paul, and mary.[/i]
+
+[p][b]Configure the area that will be covered with rain[/b][/p]
+[p][indent=30px][font=andale mono,monospace]/tnt set area 2[/font][indent][/p]
+[i]This sets the area that will be covered with TNT rain to a square with a length of 2 chunks.
+A chunk is an area of 16x16 blocks.
+Valid values are anything between 1 and 20.
+Please note, that the TNT cloud always flows directly above the player with the player in its center.[/i]
+
+[p][b]Configure the chance of dropping TNT on any world tick[/b][/p]
+[p][indent=30px][font=andale mono,monospace]/tnt set chance 10[/font][indent][/p]
+[i]This sets the chance of dropping TNT at any given world tick to 10 percent.
+Valid values are anything between 1 and 100.[/i]
+
+[p][b]Configure the number of drops:[/b][/p]
+[p][indent=30px][font=andale mono,monospace]/tnt set drops 10[/font][indent][/p]
+[i]This sets the number of TNT blocks that are dropped together at the same time to 10.
+Valid values are anything between 1 and 100.[/i]
+[/spoiler]
+
+[spoiler=How to Install][b]Download[/b]
+[numlist]
+[*][url=http://files.minecraftforge.net]Forge (Installer!) 10.13.0[/url] [i](Version 10.13.0.1180 did the job for me)[/i]
+[*][url=http://www.mediafire.com/download/j9t5id7of654jc4/tnt-rainmaker-1.7.10-1.1.0.jar]TNT-Rainmaker 1.1.0[/url]
+[/numlist]
+[b]Singleplayer:[/b]
+[numlist]
+[*][url=http://www.minecraftforge.net/wiki/Installation/Universal]Install Forge[/url] (you have just to double click the minecraftforge-installer-*.jar file and follow the instructions).
+[*]Locate your .minecraft/mods folder (if it's not there you have to run Minecraft with Forge at least once)
+[*]Copy the tnt-rainmaker-*.jar file into your .minecraft/mods folder
+[*]Play
+[/numlist]
+[b]Multiplayer:[/b]
+[numlist]
+[*][url=http://www.minecraftforge.net/wiki/Installation/Universal]Install Forge[/url] (you have just to double click the minecraftforge-installer-*.jar file and follow the instructions).
+[*]Locate your server mods folder (if it's not there you have to run Minecraft-Forge at least once)
+[*]Copy the tnt-rainmaker-*.jar file into your mods folder
+[*]Start the server and play
+[/numlist]
+[b]A Note to Server Owners[/b]
+For multiplayer you have to install Forge and TNT-Rain only on the server.
+No client-side installation of TNT-Rain is needed.
+[/spoiler]
+
+[spoiler=Release History]
+[list]
+[*][1.7.10] [url=http://www.mediafire.com/download/j9t5id7of654jc4/tnt-rainmaker-1.7.10-1.1.0.jar]TNT-Rainmaker 1.1.0[/url]
+[list]
+[*]Renamed from TNT-Rain to TNT-Rainmaker (since there was already a mod with that name)
+[/list]
+[*][1.7.10] [url=http://www.mediafire.com/download/9jqtw23bn991ac9/tnt-rain-1.7.10-1.0.0.jar]TNT-Rain 1.0.0[/url]
+[list]
+[*]Made for Minecraft 1.7.10
+[*]Made for Forge 10.13.0.1180
+[/list]
+[/list]
+[/spoiler]
+
+[spoiler=Copyright]This mod (plugin, a patch to Minecraft source, henceforth "Mod" or "The Mod"), by the terms of [url=http://www.minecraft.net/copyright.jsp]http://www.minecraft.net/copyright.jsp[/url] is sole property of the Mod author (, henceforth "Owner" or "The Owner"). By default it may only be distributed on minecraftforums.net. It may only be mirrored or reposted (e.g. in a modpack) with advance written permission of the Owner. URL shorteners or other attempts to make money (except voluntary donations) off The Owner's Mod are strictly forbidden without advance written permission.[/spoiler]
+
+[spoiler=Permissions for Redistribution]I give you absolutely NO permission to redistribute copies of this mod.
+[p]You are currently not allowed to include this mod into your modpack.
+You may link to the mod file itself by using the download links found in the Release History section.
+If you do so, you also have to show a link to this forum thread using the following url:[code]http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2535044-[/code]
+However, you can try to contact me (PM) and ask for an individual permission.[/p]
+[/spoiler]
+
+[p][b]Videos:[/b][/p]
+[p]None by now...[/p]
+[p][represent][/p]
