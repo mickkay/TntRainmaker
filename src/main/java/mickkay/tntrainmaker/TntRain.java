@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class TntRain {
@@ -106,7 +107,11 @@ public class TntRain {
       for (int i = 0; i < drops; ++i) {
         int x = (int) (player.posX + world.rand.nextDouble() * WIDTH * size - WIDTH * size / 2.0);
         int z = (int) (player.posZ + world.rand.nextDouble() * LENGTH * size - LENGTH * size / 2.0);
-        int y = world.getHeightValue(x, z) + 72;
+
+        // int y = world.getHeightValue(x, z) + 72;
+        BlockPos pos = new BlockPos(x, 0, z);
+        int y = world.getTopSolidOrLiquidBlock(pos).getY() + 72;
+
 
         EntityTNTPrimed tnt = new EntityTNTPrimed(world, x, y, z, null);
         world.spawnEntityInWorld(tnt);
