@@ -1,5 +1,7 @@
 package mickkay.tntrainmaker;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +12,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.World;
 
 public class TntCommand implements ICommand {
 
@@ -68,7 +71,9 @@ public class TntCommand implements ICommand {
 
   private void performSet(ICommandSender sender, String[] args) {
     if (args.length == 0) {
-      replyToSender(sender, "Missing property!");
+      // replyToSender(sender, "Missing property!");
+      // return;
+      performShowSetting(sender);
       return;
     }
     String property = args[0];
@@ -83,10 +88,18 @@ public class TntCommand implements ICommand {
     }
   }
 
+  private void performShowSetting(ICommandSender sender) {
+    TntRain rain = TntRainmaker.instance.getTntRain();
+    int drops = rain.getDrops();
+    int area = rain.getSize();
+    int chance = rain.getChance();
+    replyToSender(sender, String.format("%s settings: drops=%d, area=%d, chance=%d",
+        TntRainmaker.NAME, drops, area, chance));
+  }
+
   private void performSetChance(ICommandSender sender, String[] args) {
     if (args.length == 0) {
-      replyToSender(sender, "Missing number value!");
-      return;
+      throw new CommandException("commands.generic.usage", "/tnt set chance <number>");
     }
     try {
       int number = Integer.parseInt(args[0]);
@@ -96,7 +109,7 @@ public class TntCommand implements ICommand {
       if (number > 100) {
         throw new CommandException("commands.generic.num.tooBig", number, 100);
       }
-      TntRainmaker.instance.getTntAirRaidEffect().setChance(number);
+      TntRainmaker.instance.getTntRain().setChance(number);
     } catch (NumberFormatException ex) {
       throw new CommandException("commands.generic.num.invalid", args[0]);
     }
@@ -104,8 +117,7 @@ public class TntCommand implements ICommand {
 
   private void performSetArea(ICommandSender sender, String[] args) {
     if (args.length == 0) {
-      replyToSender(sender, "Missing number value!");
-      return;
+      throw new CommandException("commands.generic.usage", "/tnt set area <number>");
     }
     try {
       int number = Integer.parseInt(args[0]);
@@ -115,7 +127,7 @@ public class TntCommand implements ICommand {
       if (number > 20) {
         throw new CommandException("commands.generic.num.tooBig", number, 20);
       }
-      TntRainmaker.instance.getTntAirRaidEffect().setSize(number);
+      TntRainmaker.instance.getTntRain().setSize(number);
     } catch (NumberFormatException ex) {
       throw new CommandException("commands.generic.num.invalid", args[0]);
     }
@@ -123,8 +135,7 @@ public class TntCommand implements ICommand {
 
   private void performSetDrops(ICommandSender sender, String[] args) {
     if (args.length == 0) {
-      replyToSender(sender, "Missing number value!");
-      return;
+      throw new CommandException("commands.generic.usage", "/tnt set drops <number>");
     }
     try {
       int number = Integer.parseInt(args[0]);
@@ -134,7 +145,7 @@ public class TntCommand implements ICommand {
       if (number > 100) {
         throw new CommandException("commands.generic.num.tooBig", number, 100);
       }
-      TntRainmaker.instance.getTntAirRaidEffect().setDropsPerDrop(number);
+      TntRainmaker.instance.getTntRain().setDrops(number);
       replyToSender(sender, "tnt drops is set to %s", number);
     } catch (NumberFormatException ex) {
       throw new CommandException("commands.generic.num.invalid", args[0]);
@@ -154,38 +165,44 @@ public class TntCommand implements ICommand {
 
   private void performOff(ICommandSender sender, String[] args) {
     if (args.length == 0) {
-      TntRainmaker.instance.getTntAirRaidEffect().setEnabled(false);
+      TntRainmaker.instance.getTntRain().setEnabled(false);
       replyToSender(sender, "tnt is off");
       return;
     }
-    for (String name : args) {
-      for (EntityPlayer p : (List<EntityPlayer>) sender.getEntityWorld().playerEntities) {
-        if (name.equalsIgnoreCase(p.getDisplayName())) {
-          TntRainmaker.instance.getTntAirRaidEffect().setEnabled(p, false);
-          replyToSender(sender, "tnt is off for player " + name);
-          return;
-        }
-      }
-      replyToSender(sender, "player " + name + " not found");
+    List<EntityPlayer> players = findPlayersByName(args, sender.getEntityWorld());
+    for (EntityPlayer p : players) {
+      TntRainmaker.instance.getTntRain().setEnabled(p, false);
+      replyToSender(sender, "tnt is off for player " + p.getDisplayName());
+      return;
     }
   }
 
   private void performOn(ICommandSender sender, String[] args) {
     if (args.length == 0) {
-      TntRainmaker.instance.getTntAirRaidEffect().setEnabled(true);
+      TntRainmaker.instance.getTntRain().setEnabled(true);
       replyToSender(sender, "tnt is on");
       return;
     }
-    for (String name : args) {
-      for (EntityPlayer p : (List<EntityPlayer>) sender.getEntityWorld().playerEntities) {
+    List<EntityPlayer> players = findPlayersByName(args, sender.getEntityWorld());
+    for (EntityPlayer p : players) {
+      TntRainmaker.instance.getTntRain().setEnabled(p, true);
+      replyToSender(sender, "tnt is on for player " + p.getDisplayName());
+      return;
+    }
+  }
+
+  private List<EntityPlayer> findPlayersByName(String[] names, World world) {
+    List<EntityPlayer> result = newArrayList();
+    nameloop: for (String name : names) {
+      for (EntityPlayer p : (List<EntityPlayer>) world.playerEntities) {
         if (name.equalsIgnoreCase(p.getDisplayName())) {
-          TntRainmaker.instance.getTntAirRaidEffect().setEnabled(p, true);
-          replyToSender(sender, "tnt is on for player " + name);
-          return;
+          result.add(p);
+          continue nameloop;
         }
       }
-      replyToSender(sender, "player " + name + " not found");
+      throw new CommandException("Player " + name + " cannot be found", name);
     }
+    return result;
   }
 
   @Override

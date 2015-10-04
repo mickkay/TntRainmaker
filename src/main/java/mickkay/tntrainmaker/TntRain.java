@@ -7,19 +7,35 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class TntRainEffect {
-  private final Map<Integer, Dropper> map = new HashMap<Integer, Dropper>();
+public class TntRain {
+  private final Map<Integer, TntCloud> map = new HashMap<Integer, TntCloud>();
   private int drops = 4;
   private int size = 8;
   private int chance = 20;
   private boolean enabled = false;
 
-  public void setDropsPerDrop(int drops) {
+  public void setDrops(int drops) {
     this.drops = drops;
+  }
+
+  public int getDrops() {
+    return drops;
   }
 
   public void setSize(int size) {
     this.size = size;
+  }
+
+  public int getSize() {
+    return size;
+  }
+
+  public int getChance() {
+    return chance;
+  }
+
+  public boolean isEnabled() {
+    return enabled;
   }
 
   public void setChance(int chance) {
@@ -28,31 +44,31 @@ public class TntRainEffect {
 
   public void setEnabled(boolean b) {
     this.enabled = b;
-    for (Dropper dropper : map.values()) {
-      dropper.setEnabled(b);
+    for (TntCloud cloud : map.values()) {
+      cloud.setEnabled(b);
     }
   }
 
   public void setEnabled(EntityPlayer player, boolean enabled) {
-    Dropper dropper = getDropper(player);
-    dropper.setEnabled(enabled);
+    TntCloud cloud = getCloud(player);
+    cloud.setEnabled(enabled);
   }
 
   public void onTick(World world, EntityPlayer player) {
-    Dropper dropper = getDropper(player);
-    dropper.handle(world, player);
+    TntCloud cloud = getCloud(player);
+    cloud.handle(world, player);
   }
 
-  private Dropper getDropper(EntityPlayer player) {
-    Dropper result = map.get(player.getEntityId());
+  private TntCloud getCloud(EntityPlayer player) {
+    TntCloud result = map.get(player.getEntityId());
     if (result == null) {
-      result = new Dropper(enabled);
+      result = new TntCloud(enabled);
       map.put(player.getEntityId(), result);
     }
     return result;
   }
 
-  private class Dropper {
+  private class TntCloud {
 
     private static final double WIDTH = 16.0;
     private static final double LENGTH = 16.0;
@@ -61,7 +77,7 @@ public class TntRainEffect {
     private long minPause = 10;
     private boolean enabled;
 
-    public Dropper(boolean enabled) {
+    public TntCloud(boolean enabled) {
       this.enabled = enabled;
     }
 
@@ -74,7 +90,7 @@ public class TntRainEffect {
     }
 
     public void handle(World world, EntityPlayer player) {
-      if (!enabled) {
+      if (!enabled || player.isDead) {
         return;
       }
       if (lastTry + minPause > world.getTotalWorldTime()) {
@@ -97,5 +113,6 @@ public class TntRainEffect {
       }
     }
   }
+
 
 }

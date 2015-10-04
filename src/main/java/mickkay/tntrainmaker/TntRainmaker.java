@@ -22,12 +22,12 @@ import cpw.mods.fml.common.gameevent.TickEvent;
     acceptableRemoteVersions = "*")
 public class TntRainmaker {
 
-  public static final String NAME = "TntRainmaker";
+  public static final String NAME = "TNT-Rainmaker";
   public static final String ID = "TntRainmaker";
-  public static final String VERSION = "1.7.10-1.1.0";
+  public static final String VERSION = "1.7.10-1.2.0";
 
   public final Logger logger = LogManager.getLogger(TntRainmaker.class.getName());
-  private final TntRainEffect effect = new TntRainEffect();
+  private final TntRain rain = new TntRain();
 
   @Instance(ID)
   public static TntRainmaker instance;
@@ -36,8 +36,8 @@ public class TntRainmaker {
     return VERSION;
   }
 
-  public TntRainEffect getTntAirRaidEffect() {
-    return effect;
+  public TntRain getTntRain() {
+    return rain;
   }
 
   @EventHandler
@@ -68,7 +68,7 @@ public class TntRainmaker {
   private void onTick(World world) {
     List<EntityPlayer> players = world.playerEntities;
     for (EntityPlayer player : players) {
-      getTntAirRaidEffect().onTick(world, player);
+      getTntRain().onTick(world, player);
     }
   }
 

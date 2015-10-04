@@ -32,13 +32,13 @@ and hell breaks loose.
 [/list]
 
 [/p]
-[p][b]Latest Changes (1.1.0):[/b][/p]
+[p][b]Latest Changes (1.2.0):[/b][/p]
 [list]
-[*]Renamed from TNT-Rain to TNT-Rainmaker (since there was already a mod with that name)
+[*]command "/tnt set" without any property name shows the current TNT-Rainmaker settings for all properties
 [/list]
 [p][b]Download:[/b][/p]
 [list]
-[*][url=http://www.mediafire.com/download/j9t5id7of654jc4/tnt-rainmaker-1.7.10-1.1.0.jar]TNT-Rainmaker 1.1.0[/url]
+[*][url=http://www.mediafire.com/download/z88tovrthqm513c/tnt-rainmaker-1.7.10-1.2.0.jar]TNT-Rainmaker 1.2.0[/url]
 [/list]
 [p][b]Requirements:[/b][/p]
 [list]
@@ -89,12 +89,15 @@ Valid values are anything between 1 and 100.[/i]
 [p][indent=30px][font=andale mono,monospace]/tnt set drops 10[/font][indent][/p]
 [i]This sets the number of TNT blocks that are dropped together at the same time to 10.
 Valid values are anything between 1 and 100.[/i]
-[/spoiler]
 
+[p][b]Show the current configuration:[/b][/p]
+[p][indent=30px][font=andale mono,monospace]/tnt set[/font][indent][/p]
+[i]This shows the current TNT-Rainmaker settings for area, drops, and chance.
+[/spoiler]
 [spoiler=How to Install][b]Download[/b]
 [numlist]
 [*][url=http://files.minecraftforge.net]Forge (Installer!) 10.13.0[/url] [i](Version 10.13.0.1180 did the job for me)[/i]
-[*][url=http://www.mediafire.com/download/j9t5id7of654jc4/tnt-rainmaker-1.7.10-1.1.0.jar]TNT-Rainmaker 1.1.0[/url]
+[*][url=http://www.mediafire.com/download/z88tovrthqm513c/tnt-rainmaker-1.7.10-1.2.0.jar]TNT-Rainmaker 1.2.0[/url]
 [/numlist]
 [b]Singleplayer:[/b]
 [numlist]
@@ -117,6 +120,10 @@ No client-side installation of TNT-Rain is needed.
 
 [spoiler=Release History]
 [list]
+[*][1.7.10] [url=http://www.mediafire.com/download/z88tovrthqm513c/tnt-rainmaker-1.7.10-1.2.0.jar]TNT-Rainmaker 1.2.0[/url]
+[list]
+[*]command "/tnt set" without any property name shows the current TNT-Rainmaker settings for all properties 
+[/list]
 [*][1.7.10] [url=http://www.mediafire.com/download/j9t5id7of654jc4/tnt-rainmaker-1.7.10-1.1.0.jar]TNT-Rainmaker 1.1.0[/url]
 [list]
 [*]Renamed from TNT-Rain to TNT-Rainmaker (since there was already a mod with that name)
@@ -138,6 +145,8 @@ If you do so, you also have to show a link to this forum thread using the follow
 However, you can try to contact me (PM) and ask for an individual permission.[/p]
 [/spoiler]
 
+
 [p][b]Videos:[/b][/p]
 [p]None by now...[/p]
+
 [p][represent][/p]
