@@ -11,6 +11,7 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
@@ -23,7 +24,7 @@ public class TntCommand implements ICommand {
   }
 
   @Override
-  public String getCommandName() {
+  public String getName() {
     return "tnt";
   }
 
@@ -33,18 +34,25 @@ public class TntCommand implements ICommand {
   }
 
   @Override
-  public List getCommandAliases() {
+  public List getAliases() {
     return aliases;
   }
 
+  @Override
+  public boolean canCommandSenderUse(ICommandSender sender) {
+    // TODO check is this is sufficient and we can remove the check in execute
+    return isCommandAllowed(sender);
+  }
+
   boolean isCommandAllowed(ICommandSender sender) {
-    boolean isOp = sender.canCommandSenderUseCommand(2, "");
+    boolean isOp = sender.canUseCommand(2, "");
     return isOp;
   }
 
   @Override
-  public void processCommand(ICommandSender sender, String[] args) {
+  public void execute(ICommandSender sender, String[] args) throws CommandException {
     MinecraftServer server = MinecraftServer.getServer();
+    // check if we can remove this check because we implemented canCommandSenderUse correctly
     if (!isCommandAllowed(sender)) {
       throw new CommandException("commands.generic.permission", args[0]);
     }
@@ -69,7 +77,7 @@ public class TntCommand implements ICommand {
     sender.addChatMessage(new ChatComponentText(String.format(message, args)));
   }
 
-  private void performSet(ICommandSender sender, String[] args) {
+  private void performSet(ICommandSender sender, String[] args) throws CommandException {
     if (args.length == 0) {
       // replyToSender(sender, "Missing property!");
       // return;
@@ -97,7 +105,7 @@ public class TntCommand implements ICommand {
         TntRainmaker.NAME, drops, area, chance));
   }
 
-  private void performSetChance(ICommandSender sender, String[] args) {
+  private void performSetChance(ICommandSender sender, String[] args) throws CommandException {
     if (args.length == 0) {
       throw new CommandException("commands.generic.usage", "/tnt set chance <number>");
     }
@@ -115,7 +123,7 @@ public class TntCommand implements ICommand {
     }
   }
 
-  private void performSetArea(ICommandSender sender, String[] args) {
+  private void performSetArea(ICommandSender sender, String[] args) throws CommandException {
     if (args.length == 0) {
       throw new CommandException("commands.generic.usage", "/tnt set area <number>");
     }
@@ -133,7 +141,7 @@ public class TntCommand implements ICommand {
     }
   }
 
-  private void performSetDrops(ICommandSender sender, String[] args) {
+  private void performSetDrops(ICommandSender sender, String[] args) throws CommandException {
     if (args.length == 0) {
       throw new CommandException("commands.generic.usage", "/tnt set drops <number>");
     }
@@ -163,7 +171,7 @@ public class TntCommand implements ICommand {
   }
 
 
-  private void performOff(ICommandSender sender, String[] args) {
+  private void performOff(ICommandSender sender, String[] args) throws CommandException {
     if (args.length == 0) {
       TntRainmaker.instance.getTntRain().setEnabled(false);
       replyToSender(sender, "tnt is off");
@@ -177,7 +185,7 @@ public class TntCommand implements ICommand {
     }
   }
 
-  private void performOn(ICommandSender sender, String[] args) {
+  private void performOn(ICommandSender sender, String[] args) throws CommandException {
     if (args.length == 0) {
       TntRainmaker.instance.getTntRain().setEnabled(true);
       replyToSender(sender, "tnt is on");
@@ -191,11 +199,11 @@ public class TntCommand implements ICommand {
     }
   }
 
-  private List<EntityPlayer> findPlayersByName(String[] names, World world) {
+  private List<EntityPlayer> findPlayersByName(String[] names, World world) throws CommandException {
     List<EntityPlayer> result = newArrayList();
     nameloop: for (String name : names) {
       for (EntityPlayer p : (List<EntityPlayer>) world.playerEntities) {
-        if (name.equalsIgnoreCase(p.getDisplayName())) {
+        if (name.equalsIgnoreCase(p.getDisplayNameString())) {
           result.add(p);
           continue nameloop;
         }
@@ -206,12 +214,7 @@ public class TntCommand implements ICommand {
   }
 
   @Override
-  public boolean canCommandSenderUseCommand(ICommandSender sender) {
-    return true;
-  }
-
-  @Override
-  public List addTabCompletionOptions(ICommandSender sender, String[] args) {
+  public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
     if (args.length == 0 || "".equals(args[0])) {
       return asList("set", "on", "off");
     }
@@ -256,7 +259,6 @@ public class TntCommand implements ICommand {
   private List asList(String... elems) {
     return Arrays.asList(elems);
   }
-
 
   @Override
   public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) {
