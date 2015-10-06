@@ -180,7 +180,7 @@ Bug reports and feature requests can be added to the [url=https://github.com/mic
 [spoiler=Permissions for Redistribution]I give you absolutely NO permission to redistribute copies of this mod.
 [p]You are currently not allowed to include this mod into your modpack.
 You may link to the mod file itself by using the download links found in the Release History section.
-If you do so, you also have to show a link to this forum thread using the following url:[code]http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2535044-[/code]
+If you do so, you also have to show a link to this forum thread using the following url:[code]http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2535044[/code]
 However, you can try to contact me (PM) and ask for an individual permission.[/p]
 [/spoiler]
 
