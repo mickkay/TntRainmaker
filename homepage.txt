@@ -123,6 +123,14 @@ A client-side installation of Forge is only required for Minecraft 1.7.10.
 Since Minecraft 1.8 no Forge is required on the client.
 [/spoiler]
 
+[spoiler=Bug Reports, Feature Requests & Source Contributions]
+The TNT-Rainmaker Mod is Open Source software.
+
+You are welcome to contribute source code to this mod via [url=https://github.com/mickkay/TntRainmaker]Github[/url].
+
+Bug reports and feature requests can be added to the [url=https://github.com/mickkay/TntRainmaker/issues]TNT-Rainmaker Issues page[/url].
+[/spoiler]
+
 [spoiler=Release History]
 [list]
 [*][1.8] [url=http://www.mediafire.com/download/fx9sgfns0xln468/tnt-rainmaker-1.8-2.0.0.jar]TNT-Rainmaker 2.0.0[/url]
