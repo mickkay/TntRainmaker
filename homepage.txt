@@ -27,21 +27,32 @@ and hell breaks loose.
 
 [p][b]TNT-Rainmaker runs in:[/b][/p] 
 [list]
-[*][b]Singleplayer[/b], if you have a client-side installation of Forge and TNT-Rainmaker. Make sure that you play a world created with "Allow Cheats: ON", or you won't be allowed to use the tnt command.
-[*][b]Multiplayer MC 1.7.10[/b], if you have a server-side installation of Forge and TNT-Rainmaker. No client-side installation of TNT-Rainmaker required. However, with Forge 10.x we still need a client-side installation of Forge. Make sure that you have operator privileges, or you won't be allowed to use the tnt command.
-[*][b]Multiplayer MC 1.8[/b], if you have a server-side installation of Forge and TNT-Rainmaker. No client-side installation of TNT-Rainmaker and Forge required. Works perfectly fine with vanilla clients! Make sure that you have operator privileges, or you won't be allowed to use the tnt command.
+[*][b]Singleplayer[/b]:[list]
+[*]You need a client-side installation of Forge and TNT-Rainmaker. 
+[*]Make sure that you play a world created with "Allow Cheats: ON", or you won't be allowed to use the tnt command.
 [/list]
-
+[*][b]Multiplayer, Minecraft 1.7.10[/b]:[list]
+[*]You need a server-side installation of Forge and TNT-Rainmaker. 
+[*]You need a client-side installation of Forge. No client-side installation of TNT-Rainmaker required. 
+[*]Make sure that you have operator privileges, or you won't be allowed to use the tnt command.
+[/list]
+[*][b]Multiplayer, Minecraft 1.8[/b]:[list]
+[*]You need a server-side installation of Forge and TNT-Rainmaker. 
+[*]No client-side installation of Forge or TNT-Rainmaker required.
+[*][color=#ff6600]Works perfectly fine with vanilla clients![/color]
+[*]Make sure that you have operator privileges, or you won't be allowed to use the tnt command.
+[/list]
+[/list]
 [/p]
-[p][b]Latest Changes (2.0.0):[/b][/p]
+[p][b]Latest Changes (2.1.0):[/b][/p]
 [list]
-[*]Upgraded to Minecraft 1.8
-[*]Upgraded to Forge 11.14.3.1450 
-[*][color=#ff6600][b]Works also with vanilla clients[/b][/color] (Forge is only required on server) 
+[*]Fix: TNT rain stops for player after player reconnects
+[*]Fix: only first player in list is handled in /tnt on|off
+[*]Support autocompletion for player names
 [/list]
 [p][b]Download:[/b][/p]
 [list]
-[*][url=http://www.mediafire.com/download/fx9sgfns0xln468/tnt-rainmaker-1.8-2.0.0.jar]TNT-Rainmaker 2.0.0[/url]
+[*][url=http://www.mediafire.com/download/hd7jt3c4icllkh3/tnt-rainmaker-1.8-2.1.0.jar]TNT-Rainmaker 2.1.0[/url]
 [/list]
 [p][b]Requirements:[/b][/p]
 [list]
@@ -100,21 +111,24 @@ Valid values are anything between 1 and 100.[/i]
 [spoiler=How to Install][b]Download[/b]
 [numlist]
 [*][url=http://files.minecraftforge.net]Forge (Installer!) 11.14.3[/url] [i](Version 11.14.3.1450 did the job for me)[/i]
-[*][url=http://www.mediafire.com/download/fx9sgfns0xln468/tnt-rainmaker-1.8-2.0.0.jar]TNT-Rainmaker 2.0.0[/url]
+[*][url=http://www.mediafire.com/download/hd7jt3c4icllkh3/tnt-rainmaker-1.8-2.1.0.jar]TNT-Rainmaker 2.1.0[/url]
 [/numlist]
 [b]Singleplayer:[/b]
 [numlist]
 [*][url=http://www.minecraftforge.net/wiki/Installation/Universal]Install Forge[/url] (you have just to double click the minecraftforge-installer-*.jar file and follow the instructions).
 [*]Locate your .minecraft/mods folder (if it's not there you have to run Minecraft with Forge at least once)
 [*]Copy the tnt-rainmaker-*.jar file into your .minecraft/mods folder
+[*]Make sure that you play a world created with "Allow Cheats: ON", or you won't be allowed to use the tnt command
 [*]Play
 [/numlist]
-[b]Multiplayer:[/b]
+[b]Multiplayer (Server):[/b]
 [numlist]
 [*][url=http://www.minecraftforge.net/wiki/Installation/Universal]Install Forge[/url] (you have just to double click the minecraftforge-installer-*.jar file and follow the instructions).
 [*]Locate your server mods folder (if it's not there you have to run Minecraft-Forge at least once)
 [*]Copy the tnt-rainmaker-*.jar file into your mods folder
-[*]Start the server and play
+[*]Start the server
+[*]Make sure that you have operator privileges, or you won't be allowed to use the tnt command
+[*]Play
 [/numlist]
 [b]A Note to Server Owners[/b]
 For multiplayer you have to install TNT-Rainmaker only on the server.
@@ -133,6 +147,12 @@ Bug reports and feature requests can be added to the [url=https://github.com/mic
 
 [spoiler=Release History]
 [list]
+[*][1.8] [url=http://www.mediafire.com/download/hd7jt3c4icllkh3/tnt-rainmaker-1.8-2.1.0.jar]TNT-Rainmaker 2.1.0[/url]
+[list]
+[*]Fix: TNT rain stops for player after player reconnects
+[*]Fix: only first player in list is handled in /tnt on|off
+[*]Support autocompletion for player names
+[/list]
 [*][1.8] [url=http://www.mediafire.com/download/fx9sgfns0xln468/tnt-rainmaker-1.8-2.0.0.jar]TNT-Rainmaker 2.0.0[/url]
 [list]
 [*]Upgraded to Minecraft 1.8
