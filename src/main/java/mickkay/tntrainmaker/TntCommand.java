@@ -17,6 +17,13 @@ import net.minecraft.world.World;
 
 public class TntCommand implements ICommand {
 
+  private static final String ON = "on";
+  private static final String OFF = "off";
+  private static final String SET = "set";
+  private static final String CHANCE = "chance";
+  private static final String AREA = "area";
+  private static final String DROPS = "drops";
+
   private List<String> aliases = new ArrayList<String>();
 
   public TntCommand() {
@@ -44,6 +51,16 @@ public class TntCommand implements ICommand {
     return isCommandAllowed(sender);
   }
 
+  @Override
+  public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) {
+    return false;
+  }
+
+  @Override
+  public int compareTo(Object arg0) {
+    return 0;
+  }
+
   boolean isCommandAllowed(ICommandSender sender) {
     boolean isOp = sender.canUseCommand(2, "");
     return isOp;
@@ -62,14 +79,14 @@ public class TntCommand implements ICommand {
       return;
     }
     String command = args[0];
-    if ("on".equals(command)) {
+    if (ON.equals(command)) {
       performOn(sender, subarray(args, 1));
-    } else if ("off".equals(command)) {
+    } else if (OFF.equals(command)) {
       performOff(sender, subarray(args, 1));
-    } else if ("set".equals(command)) {
+    } else if (SET.equals(command)) {
       performSet(sender, subarray(args, 1));
     } else {
-      replyToSender(sender, "Unknown tnt command %s!", command);
+      replyToSender(sender, "Unknown tnt argument %s!", command);
     }
   }
 
@@ -79,17 +96,15 @@ public class TntCommand implements ICommand {
 
   private void performSet(ICommandSender sender, String[] args) throws CommandException {
     if (args.length == 0) {
-      // replyToSender(sender, "Missing property!");
-      // return;
       performShowSetting(sender);
       return;
     }
     String property = args[0];
-    if ("drops".equals(property)) {
+    if (DROPS.equals(property)) {
       performSetDrops(sender, subarray(args, 1));
-    } else if ("area".equals(property)) {
+    } else if (AREA.equals(property)) {
       performSetArea(sender, subarray(args, 1));
-    } else if ("chance".equals(property)) {
+    } else if (CHANCE.equals(property)) {
       performSetChance(sender, subarray(args, 1));
     } else {
       replyToSender(sender, "Unknown property %s!", property);
@@ -160,17 +175,6 @@ public class TntCommand implements ICommand {
     }
   }
 
-  private String[] subarray(String[] source, int start) {
-    int len = source.length - start;
-    if (len < 0) {
-      return new String[0];
-    }
-    String[] result = new String[len];
-    System.arraycopy(source, start, result, 0, len);
-    return result;
-  }
-
-
   private void performOff(ICommandSender sender, String[] args) throws CommandException {
     if (args.length == 0) {
       TntRainmaker.instance.getTntRain().setEnabled(false);
@@ -180,7 +184,7 @@ public class TntCommand implements ICommand {
     List<EntityPlayer> players = findPlayersByName(args, sender.getEntityWorld());
     for (EntityPlayer p : players) {
       TntRainmaker.instance.getTntRain().setEnabled(p, false);
-      replyToSender(sender, "tnt is off for player " + p.getDisplayName());
+      replyToSender(sender, "tnt is off for " + p.getDisplayNameString());
       return;
     }
   }
@@ -194,9 +198,68 @@ public class TntCommand implements ICommand {
     List<EntityPlayer> players = findPlayersByName(args, sender.getEntityWorld());
     for (EntityPlayer p : players) {
       TntRainmaker.instance.getTntRain().setEnabled(p, true);
-      replyToSender(sender, "tnt is on for player " + p.getDisplayName());
+      replyToSender(sender, "tnt is on for " + p.getDisplayNameString());
       return;
     }
+  }
+
+  @Override
+  public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
+    if (args.length == 0 || "".equals(args[0])) {
+      return asList(SET, ON, OFF);
+    }
+    String command = args[0];
+    if (SET.equals(command)) {
+      if (args.length == 1 || "".equals(args[1])) {
+        return asList(DROPS, AREA, CHANCE);
+      }
+      String arg = args[1];
+      if (DROPS.equals(arg)) {
+        return asList("1", "8", "20", "40");
+      }
+      if (AREA.equals(arg)) {
+        return asList("1", "4", "8", "20");
+      }
+      if (CHANCE.equals(arg)) {
+        return asList("1", "10", "25", "50", "100");
+      }
+      if (arg.startsWith("d")) {
+        return asList(DROPS);
+      }
+      if (arg.startsWith("a")) {
+        return asList(AREA);
+      }
+      if (arg.startsWith("c")) {
+        return asList(CHANCE);
+      }
+      return null;
+    }
+    if (command.equals(ON) || command.equals(OFF)) {
+      World world = sender.getCommandSenderEntity().worldObj;
+      String name = getLast(subarray(args, 1));
+      List<String> names = findPlayerNamesStartWith(name, world);
+      return names;
+    }
+    if (command.startsWith("s")) {
+      return asList(SET);
+    }
+    if (command.startsWith("o")) {
+      return asList(ON, OFF);
+    }
+    if (command.startsWith("of")) {
+      return asList(OFF);
+    }
+    return null;
+  }
+
+  private List<String> findPlayerNamesStartWith(String name, World world) {
+    List<String> result = newArrayList();
+    for (EntityPlayer p : (List<EntityPlayer>) world.playerEntities) {
+      if (p.getDisplayNameString().toLowerCase().startsWith(name.toLowerCase())) {
+        result.add(p.getDisplayNameString());
+      }
+    }
+    return result;
   }
 
   private List<EntityPlayer> findPlayersByName(String[] names, World world) throws CommandException {
@@ -213,61 +276,25 @@ public class TntCommand implements ICommand {
     return result;
   }
 
-  @Override
-  public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
-    if (args.length == 0 || "".equals(args[0])) {
-      return asList("set", "on", "off");
+  private String[] subarray(String[] source, int start) {
+    int len = source.length - start;
+    if (len < 0) {
+      return new String[0];
     }
-    String command = args[0];
-    if ("set".equals(command)) {
-      if (args.length == 1 || "".equals(args[1])) {
-        return asList("drops", "area", "chance");
-      }
-      String arg = args[1];
-      if ("drops".equals(arg)) {
-        return asList("1", "8", "20", "40");
-      }
-      if ("area".equals(arg)) {
-        return asList("1", "4", "8", "20");
-      }
-      if ("chance".equals(arg)) {
-        return asList("1", "10", "25", "50", "100");
-      }
-      if (arg.startsWith("d")) {
-        return asList("drops");
-      }
-      if (arg.startsWith("a")) {
-        return asList("area");
-      }
-      if (arg.startsWith("c")) {
-        return asList("chance");
-      }
+    String[] result = new String[len];
+    System.arraycopy(source, start, result, 0, len);
+    return result;
+  }
+
+  private String getLast(String[] array) {
+    if (array.length == 0) {
       return null;
     }
-    if (command.startsWith("s")) {
-      return asList("set");
-    }
-    if (command.startsWith("o")) {
-      return asList("on", "off");
-    }
-    if (command.startsWith("of")) {
-      return asList("off");
-    }
-    return null;
+    return array[array.length - 1];
   }
 
   private List asList(String... elems) {
     return Arrays.asList(elems);
-  }
-
-  @Override
-  public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) {
-    return false;
-  }
-
-  @Override
-  public int compareTo(Object arg0) {
-    return 0;
   }
 
 }
