@@ -185,7 +185,6 @@ public class TntCommand implements ICommand {
     for (EntityPlayer p : players) {
       TntRainmaker.instance.getTntRain().setEnabled(p, false);
       replyToSender(sender, "tnt is off for " + p.getDisplayNameString());
-      return;
     }
   }
 
@@ -199,7 +198,6 @@ public class TntCommand implements ICommand {
     for (EntityPlayer p : players) {
       TntRainmaker.instance.getTntRain().setEnabled(p, true);
       replyToSender(sender, "tnt is on for " + p.getDisplayNameString());
-      return;
     }
   }
 
@@ -255,7 +253,7 @@ public class TntCommand implements ICommand {
   private List<String> findPlayerNamesStartWith(String name, World world) {
     List<String> result = newArrayList();
     for (EntityPlayer p : (List<EntityPlayer>) world.playerEntities) {
-      if (p.getDisplayNameString().toLowerCase().startsWith(name.toLowerCase())) {
+      if (p != null && p.getDisplayNameString().toLowerCase().startsWith(name.toLowerCase())) {
         result.add(p.getDisplayNameString());
       }
     }
@@ -266,7 +264,7 @@ public class TntCommand implements ICommand {
     List<EntityPlayer> result = newArrayList();
     nameloop: for (String name : names) {
       for (EntityPlayer p : (List<EntityPlayer>) world.playerEntities) {
-        if (name.equalsIgnoreCase(p.getDisplayNameString())) {
+        if (p != null && name.equalsIgnoreCase(p.getDisplayNameString())) {
           result.add(p);
           continue nameloop;
         }
