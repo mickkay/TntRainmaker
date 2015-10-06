@@ -2,6 +2,7 @@ package mickkay.tntrainmaker;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,7 +10,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class TntRain {
-  private final Map<Integer, TntCloud> map = new HashMap<Integer, TntCloud>();
+  private final Map<UUID, TntCloud> map = new HashMap<UUID, TntCloud>();
   private int drops = 4;
   private int size = 8;
   private int chance = 20;
@@ -61,10 +62,10 @@ public class TntRain {
   }
 
   private TntCloud getCloud(EntityPlayer player) {
-    TntCloud result = map.get(player.getEntityId());
+    TntCloud result = map.get(player.getUniqueID());
     if (result == null) {
       result = new TntCloud(enabled);
-      map.put(player.getEntityId(), result);
+      map.put(player.getUniqueID(), result);
     }
     return result;
   }
@@ -118,6 +119,5 @@ public class TntRain {
       }
     }
   }
-
 
 }
