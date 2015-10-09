@@ -39,7 +39,7 @@ and hell breaks loose.
 [*][b]Multiplayer, Minecraft 1.8[/b]:[list]
 [*]You need a server-side installation of Forge and TNT-Rainmaker. 
 [*]No client-side installation of Forge or TNT-Rainmaker required.
-[*][color=#ff6600]Works perfectly fine with vanilla clients![/color]
+[*][color=#ff4400]Works perfectly fine with vanilla clients![/color]
 [*]Make sure that you have operator privileges, or you won't be allowed to use the tnt command.
 [/list]
 [/list]
@@ -106,7 +106,7 @@ Valid values are anything between 1 and 100.[/i]
 
 [p][b]Show the current configuration:[/b][/p]
 [p][indent=30px][font=andale mono,monospace]/tnt set[/font][indent][/p]
-[i]This shows the current TNT-Rainmaker settings for area, drops, and chance.
+[i]This shows the current TNT-Rainmaker settings for area, drops, and chance.[/i]
 [/spoiler]
 [spoiler=How to Install][b]Download[/b]
 [numlist]
@@ -186,6 +186,12 @@ However, you can try to contact me (PM) and ask for an individual permission.[/p
 
 
 [p][b]Videos:[/b][/p]
-[p]None by now...[/p]
+
+
+This is a (german) mod demo made by myself:
+[media]https://www.youtube.com/embed/8eU8Lhe5eIs[/media]
+
+
+Hey, you have made some mod review about TNT-Rainmaker? Tell me about it!
 
 [p][represent][/p]
