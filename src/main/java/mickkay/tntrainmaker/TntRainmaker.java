@@ -27,6 +27,7 @@ public class TntRainmaker {
 
   public final Logger logger = LogManager.getLogger(TntRainmaker.class.getName());
   private final TntRain rain = new TntRain();
+  private TntConfiguration configuration;
 
   @Instance(ID)
   public static TntRainmaker instance;
@@ -40,7 +41,9 @@ public class TntRainmaker {
   }
 
   @EventHandler
-  public void preInit(FMLPreInitializationEvent event) throws Exception {}
+  public void preInit(FMLPreInitializationEvent event) throws Exception {
+    configuration = new TntConfiguration(event.getSuggestedConfigurationFile());
+  }
 
   @EventHandler
   public void init(FMLInitializationEvent event) {
@@ -56,12 +59,21 @@ public class TntRainmaker {
 
   @SubscribeEvent
   public void tickEnd(TickEvent.WorldTickEvent evt) {
-    if (evt.world.isRemote) {
+    if (evt.world.isRemote || !isTntRainAllowedFor(evt.world)) {
       return;
     }
     if (evt.type == TickEvent.Type.WORLD && evt.phase == TickEvent.Phase.END) {
       onTick(evt.world);
     }
+  }
+
+  public boolean isTntRainAllowedFor(World world) {
+    int dimId = world.provider.getDimensionId();
+    if (configuration == null) {
+      throw new IllegalStateException(
+          "Fatal error: TntRainmaker configuration has not been loaded!");
+    }
+    return configuration.isAllowedDimension(dimId);
   }
 
   private void onTick(World world) {
@@ -70,5 +82,6 @@ public class TntRainmaker {
       getTntRain().onTick(world, player);
     }
   }
+
 
 }
