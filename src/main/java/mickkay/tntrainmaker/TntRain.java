@@ -10,38 +10,48 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class TntRain {
+  public static final int MIN_CHANCE = 1;
+  public static final int MAX_CHANCE = 100;
+  public static final int MIN_DROPS = 1;
+  public static final int MAX_DROPS = 100;
+  public static final int MIN_AREA = 1;
+  public static final int MAX_AREA = 20;
+
   private final Map<UUID, TntCloud> map = new HashMap<UUID, TntCloud>();
   private int drops = 4;
   private int size = 8;
   private int chance = 20;
   private boolean enabled = false;
 
-  public void setDrops(int drops) {
-    this.drops = drops;
-  }
-
   public int getDrops() {
     return drops;
   }
 
-  public void setSize(int size) {
-    this.size = size;
+  public void setDrops(int drops) {
+    this.drops = drops;
+    TntRainmaker.instance.getConfiguration().setDefaultDrops(drops);
   }
 
   public int getSize() {
     return size;
   }
 
+  public void setSize(int size) {
+    this.size = size;
+    TntRainmaker.instance.getConfiguration().setDefaultArea(size);
+  }
+
   public int getChance() {
     return chance;
   }
 
-  public boolean isEnabled() {
-    return enabled;
-  }
-
   public void setChance(int chance) {
     this.chance = chance;
+    TntRainmaker.instance.getConfiguration().setDefaultChance(chance);
+  }
+
+  public boolean isEnabled() {
+    return enabled;
   }
 
   public void setEnabled(boolean b) {

@@ -126,13 +126,14 @@ public class TntCommand implements ICommand {
     }
     try {
       int number = Integer.parseInt(args[0]);
-      if (number < 1) {
-        throw new CommandException("commands.generic.num.tooSmall", number, 1);
+      if (number < TntRain.MIN_CHANCE) {
+        throw new CommandException("commands.generic.num.tooSmall", number, TntRain.MIN_CHANCE);
       }
-      if (number > 100) {
-        throw new CommandException("commands.generic.num.tooBig", number, 100);
+      if (number > TntRain.MAX_CHANCE) {
+        throw new CommandException("commands.generic.num.tooBig", number, TntRain.MAX_CHANCE);
       }
       TntRainmaker.instance.getTntRain().setChance(number);
+      replyToSender(sender, "tnt chance is set to %s", number);
     } catch (NumberFormatException ex) {
       throw new CommandException("commands.generic.num.invalid", args[0]);
     }
@@ -144,13 +145,14 @@ public class TntCommand implements ICommand {
     }
     try {
       int number = Integer.parseInt(args[0]);
-      if (number < 1) {
-        throw new CommandException("commands.generic.num.tooSmall", number, 1);
+      if (number < TntRain.MIN_AREA) {
+        throw new CommandException("commands.generic.num.tooSmall", number, TntRain.MIN_AREA);
       }
-      if (number > 20) {
-        throw new CommandException("commands.generic.num.tooBig", number, 20);
+      if (number > TntRain.MAX_AREA) {
+        throw new CommandException("commands.generic.num.tooBig", number, TntRain.MAX_AREA);
       }
       TntRainmaker.instance.getTntRain().setSize(number);
+      replyToSender(sender, "tnt area is set to %s", number);
     } catch (NumberFormatException ex) {
       throw new CommandException("commands.generic.num.invalid", args[0]);
     }
@@ -162,11 +164,11 @@ public class TntCommand implements ICommand {
     }
     try {
       int number = Integer.parseInt(args[0]);
-      if (number < 1) {
-        throw new CommandException("commands.generic.num.tooSmall", number, 1);
+      if (number < TntRain.MIN_DROPS) {
+        throw new CommandException("commands.generic.num.tooSmall", number, TntRain.MIN_DROPS);
       }
-      if (number > 100) {
-        throw new CommandException("commands.generic.num.tooBig", number, 100);
+      if (number > TntRain.MAX_DROPS) {
+        throw new CommandException("commands.generic.num.tooBig", number, TntRain.MAX_DROPS);
       }
       TntRainmaker.instance.getTntRain().setDrops(number);
       replyToSender(sender, "tnt drops is set to %s", number);

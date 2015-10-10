@@ -26,12 +26,21 @@ public final class TntConfiguration {
   public TntConfiguration(File file) {
     this.file = file;
     config = new Configuration(file, TntRainmaker.VERSION);
+    config.getCategory("defaults").setComment(
+        "This configures the default values of in-game settings");
+    loadDefaults();
     config
         .getCategory("dimensions")
         .setComment(
             "For instructions see http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2535044");
-    loadDimensionsRestrictions();
+    loadDimensions();
     config.save();
+  }
+
+  private void loadDefaults() {
+    getDefaultAreaProperty();
+    getDefaultChanceProperty();
+    getDefaultDropsProperty();
   }
 
   public boolean isAllowedDimension(int dimId) {
@@ -47,9 +56,36 @@ public final class TntConfiguration {
     return !deniedDimensionsSet.contains(dimId);
   }
 
-  private void loadDimensionsRestrictions() {
+  public int getDefaultArea() {
+    return getDefaultAreaProperty().getInt();
+  }
+
+  public void setDefaultArea(int defaultArea) {
+    getDefaultAreaProperty().set(defaultArea);
+    config.save();
+  }
+
+  public int getDefaultDrops() {
+    return getDefaultDropsProperty().getInt();
+  }
+
+  public void setDefaultDrops(int defaultDrops) {
+    getDefaultDropsProperty().set(defaultDrops);
+    config.save();
+  }
+
+  public int getDefaultChance() {
+    return getDefaultChanceProperty().getInt();
+  }
+
+  public void setDefaultChance(int defaultChance) {
+    getDefaultChanceProperty().set(defaultChance);
+    config.save();
+  }
+
+  private void loadDimensions() {
     Property property =
-        config.get("dimensions", "restrictions", new String[] {"ALLOW *", "DENY -1"});
+        config.get("dimensions", "restrictions", new String[] {"DENY *", "ALLOW 0"});
     property.comment = "TNT rain is restricted to only work for the following dimensions";
     String[] lines = property.getStringList();
 
@@ -103,6 +139,36 @@ public final class TntConfiguration {
       result.add(Integer.parseInt(g));
     }
     return result;
+  }
+
+  private Property getDefaultAreaProperty() {
+    Property property = config.get("defaults", "area", 8);
+    property.comment =
+        "The size of the TNT rain cloud measured in chunks. Default is 8 (which means 8x8 chunks)";
+    property.setMinValue(TntRain.MIN_AREA);
+    property.setMaxValue(TntRain.MAX_AREA);
+    int number = property.getInt();
+    return property;
+  }
+
+  private Property getDefaultDropsProperty() {
+    Property property = config.get("defaults", "drops", 4);
+    property.comment =
+        "The number of drops that are spawned together in a single shower. Default is 4";
+    property.setMinValue(TntRain.MIN_DROPS);
+    property.setMaxValue(TntRain.MAX_DROPS);
+    int number = property.getInt();
+    return property;
+  }
+
+  private Property getDefaultChanceProperty() {
+    Property property = config.get("defaults", "chance", 20);
+    property.comment =
+        "The probability of a shower, calculated every world tick. Default is 20 (which means 20 percent)";
+    property.setMinValue(TntRain.MIN_CHANCE);
+    property.setMaxValue(TntRain.MAX_CHANCE);
+    int number = property.getInt();
+    return property;
   }
 
 }
