@@ -23,7 +23,7 @@ public class TntRainmaker {
 
   public static final String NAME = "TNT-Rainmaker";
   public static final String ID = "TntRainmaker";
-  public static final String VERSION = "1.8-2.1.0";
+  public static final String VERSION = "1.8-2.2.0";
 
   public final Logger logger = LogManager.getLogger(TntRainmaker.class.getName());
   private final TntRain rain = new TntRain();
@@ -38,6 +38,14 @@ public class TntRainmaker {
 
   public TntRain getTntRain() {
     return rain;
+  }
+
+  public TntConfiguration getConfiguration() {
+    if (configuration == null) {
+      throw new IllegalStateException(
+          "Fatal error: TntRainmaker configuration has not been loaded!");
+    }
+    return configuration;
   }
 
   @EventHandler
@@ -69,11 +77,7 @@ public class TntRainmaker {
 
   public boolean isTntRainAllowedFor(World world) {
     int dimId = world.provider.getDimensionId();
-    if (configuration == null) {
-      throw new IllegalStateException(
-          "Fatal error: TntRainmaker configuration has not been loaded!");
-    }
-    return configuration.isAllowedDimension(dimId);
+    return getConfiguration().isAllowedDimension(dimId);
   }
 
   private void onTick(World world) {
@@ -82,6 +86,7 @@ public class TntRainmaker {
       getTntRain().onTick(world, player);
     }
   }
+
 
 
 }

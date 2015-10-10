@@ -44,15 +44,15 @@ and hell breaks loose.
 [/list]
 [/list]
 [/p]
-[p][b]Latest Changes (2.1.0):[/b][/p]
+[p][b]Latest Changes (2.2.0):[/b][/p]
 [list]
-[*]Fix: TNT rain stops for player after player reconnects
-[*]Fix: only first player in list is handled in /tnt on|off
-[*]Support autocompletion for player names
+[*]configurable by config file  
+[*]default settings are loaded from config file
+[*]TNT rain can be restricted to certain dimenstions (via config file)
 [/list]
 [p][b]Download:[/b][/p]
 [list]
-[*][url=http://www.mediafire.com/download/hd7jt3c4icllkh3/tnt-rainmaker-1.8-2.1.0.jar]TNT-Rainmaker 2.1.0[/url]
+[*][url=http://www.mediafire.com/download/ftdzmu6ygmrfqab/tnt-rainmaker-1.8-2.2.0.jar]TNT-Rainmaker 2.2.0[/url]
 [/list]
 [p][b]Requirements:[/b][/p]
 [list]
@@ -60,7 +60,34 @@ and hell breaks loose.
 [*]and Minecraft Forge 11.14
 [/list]
 [p][i]You can find links to all versions inside the Release History section below.[/i][/p]
-
+[spoiler=How to Install][b]Download[/b]
+[numlist]
+[*][url=http://files.minecraftforge.net]Forge (Installer!) 11.14.3[/url] [i](Version 11.14.3.1450 did the job for me)[/i]
+[*][url=http://www.mediafire.com/download/ftdzmu6ygmrfqab/tnt-rainmaker-1.8-2.2.0.jar]TNT-Rainmaker 2.2.0[/url]
+[/numlist]
+[b]Singleplayer:[/b]
+[numlist]
+[*][url=http://www.minecraftforge.net/wiki/Installation/Universal]Install Forge[/url] (you have just to double click the minecraftforge-installer-*.jar file and follow the instructions).
+[*]Locate your .minecraft/mods folder (if it's not there you have to run Minecraft with Forge at least once)
+[*]Copy the tnt-rainmaker-*.jar file into your .minecraft/mods folder
+[*]Make sure that you play a world created with "Allow Cheats: ON", or you won't be allowed to use the tnt command
+[*]Play
+[/numlist]
+[b]Multiplayer (Server):[/b]
+[numlist]
+[*][url=http://www.minecraftforge.net/wiki/Installation/Universal]Install Forge[/url] (you have just to double click the minecraftforge-installer-*.jar file and follow the instructions).
+[*]Locate your server mods folder (if it's not there you have to run Minecraft-Forge at least once)
+[*]Copy the tnt-rainmaker-*.jar file into your mods folder
+[*]Start the server
+[*]Make sure that you have operator privileges, or you won't be allowed to use the tnt command
+[*]Play
+[/numlist]
+[b]A Note to Server Owners[/b]
+For multiplayer you have to install TNT-Rainmaker only on the server.
+No client-side installation of TNT-Rainmaker is needed.
+A client-side installation of Forge is only required for Minecraft 1.7.10. 
+Since Minecraft 1.8 no Forge is required on the client.
+[/spoiler]
 [spoiler=Command Manual]
 [b]Start the rain:[/b]
 [p][indent=30px][font=andale mono,monospace]/tnt on[/font][indent][/p]
@@ -108,45 +135,81 @@ Valid values are anything between 1 and 100.[/i]
 [p][indent=30px][font=andale mono,monospace]/tnt set[/font][indent][/p]
 [i]This shows the current TNT-Rainmaker settings for area, drops, and chance.[/i]
 [/spoiler]
-[spoiler=How to Install][b]Download[/b]
+[spoiler=How to Configure]
+This section describes how to change the TNT-Rainmaker configuration file.
+
 [numlist]
-[*][url=http://files.minecraftforge.net]Forge (Installer!) 11.14.3[/url] [i](Version 11.14.3.1450 did the job for me)[/i]
-[*][url=http://www.mediafire.com/download/hd7jt3c4icllkh3/tnt-rainmaker-1.8-2.1.0.jar]TNT-Rainmaker 2.1.0[/url]
+[*]Locate your .minecraft/config folder (if it's not there you have to install Forge and TNT-Rainmaker, and run Minecraft at least once)
+[*]It is a good idea to make a backup of "TntRainmaker.cfg" before you edit the original file
+[*]Open the file "TntRainmaker.cfg"
+[*]Read carefully the comments next to the setting you want to modify
+[*]Make your changes
+[*]Save the file
+[*]Enter a world
 [/numlist]
-[b]Singleplayer:[/b]
-[numlist]
-[*][url=http://www.minecraftforge.net/wiki/Installation/Universal]Install Forge[/url] (you have just to double click the minecraftforge-installer-*.jar file and follow the instructions).
-[*]Locate your .minecraft/mods folder (if it's not there you have to run Minecraft with Forge at least once)
-[*]Copy the tnt-rainmaker-*.jar file into your .minecraft/mods folder
-[*]Make sure that you play a world created with "Allow Cheats: ON", or you won't be allowed to use the tnt command
-[*]Play
-[/numlist]
-[b]Multiplayer (Server):[/b]
-[numlist]
-[*][url=http://www.minecraftforge.net/wiki/Installation/Universal]Install Forge[/url] (you have just to double click the minecraftforge-installer-*.jar file and follow the instructions).
-[*]Locate your server mods folder (if it's not there you have to run Minecraft-Forge at least once)
-[*]Copy the tnt-rainmaker-*.jar file into your mods folder
-[*]Start the server
-[*]Make sure that you have operator privileges, or you won't be allowed to use the tnt command
-[*]Play
-[/numlist]
-[b]A Note to Server Owners[/b]
-For multiplayer you have to install TNT-Rainmaker only on the server.
-No client-side installation of TNT-Rainmaker is needed.
-A client-side installation of Forge is only required for Minecraft 1.7.10. 
-Since Minecraft 1.8 no Forge is required on the client.
+[size=20][b]Defaults Category:[/b][/size]
+This category contains the default values of the in-game settings.
+These values are automatically overwritten when you change them during gameplay.
+[p][/p]
+[p][size=16][b]I:area[/b][/size][/p]
+Defines the size of the TNT rain cloud measured in chunks. Default is 8 (which means 8x8 chunks).
+[b]Example: Set area to 1[/b]
+[p][code]I:area=1[/code][/p]
+[p][size=16][b]I:chance[/b][/size][/p]
+Defines the probability of a shower, calculated every world tick. Default is 20 (which means 20 percent).
+[b]Example: Set chance to 90 percent[/b]
+[p][code]I:chance=90[/code][/p]
+[p][size=16][b]I:drops[/b][/size][/p]
+Defines the number of drops that are spawned together in a single shower. Default is 4.
+[b]Example: Set drops to 10[/b]
+[p][code]I:drops=10[/code][/p]
+[p][/p]
+[size=20][b]Dimensions Category:[/b][/size] 
+[p][/p]
+[p][size=16][b]S:restrictions[/b][/size][/p]
+Defines the dimensions to which the TNT rain is restricted to. 
+[b]Example: Allow all but The Nether[/b]
+[p][code]S:restrictions <
+    ALLOW *
+    DENY -1
+>
+[/code][/p]
+[b]Example: Allow only The Overworld[/b]
+[p][code]S:restrictions <
+    DENY *
+    ALLOW 0
+>
+[/code][/p]
+[b]Example: Allow The Overworld and The Nether, but no other dimensions[/b]
+[p][code]S:restrictions <
+    DENY *
+    ALLOW 0,-1
+>
+[/code][/p]
+[b]Example: Ignoring a line[/b]
+[p]
+You can tell TNT-Rainmaker to temporary ignore a line by inserting a hashmark '#' as the first character of the respective line.
+[/p]
+[p][code]S:restrictions <
+    DENY *
+    # ALLOW 0,-1
+    ALLOW 0
+>
+[/code]
 [/spoiler]
-
-[spoiler=Bug Reports, Feature Requests & Source Contributions]
-The TNT-Rainmaker Mod is Open Source software.
-
+[spoiler=Source Code]
+[p]The TNT-Rainmaker Mod is Open Source software.
 You are welcome to contribute source code to this mod via [url=https://github.com/mickkay/TntRainmaker]Github[/url].
-
-Bug reports and feature requests can be added to the [url=https://github.com/mickkay/TntRainmaker/issues]TNT-Rainmaker Issues page[/url].
+[/p]
 [/spoiler]
-
 [spoiler=Release History]
 [list]
+[*][1.8] [url=http://www.mediafire.com/download/ftdzmu6ygmrfqab/tnt-rainmaker-1.8-2.2.0.jar]TNT-Rainmaker 2.2.0[/url]
+[list]
+[*]configurable by config file  
+[*]default settings are loaded from config file
+[*]TNT rain can be restricted to certain dimenstions (via config file)
+[/list]
 [*][1.8] [url=http://www.mediafire.com/download/hd7jt3c4icllkh3/tnt-rainmaker-1.8-2.1.0.jar]TNT-Rainmaker 2.1.0[/url]
 [list]
 [*]Fix: TNT rain stops for player after player reconnects
@@ -174,24 +237,20 @@ Bug reports and feature requests can be added to the [url=https://github.com/mic
 [/list]
 [/list]
 [/spoiler]
-
 [spoiler=Copyright]This mod (plugin, a patch to Minecraft source, henceforth "Mod" or "The Mod"), by the terms of [url=http://www.minecraft.net/copyright.jsp]http://www.minecraft.net/copyright.jsp[/url] is sole property of the Mod author (, henceforth "Owner" or "The Owner"). By default it may only be distributed on minecraftforums.net. It may only be mirrored or reposted (e.g. in a modpack) with advance written permission of the Owner. URL shorteners or other attempts to make money (except voluntary donations) off The Owner's Mod are strictly forbidden without advance written permission.[/spoiler]
-
 [spoiler=Permissions for Redistribution]I give you absolutely NO permission to redistribute copies of this mod.
 [p]You are currently not allowed to include this mod into your modpack.
 You may link to the mod file itself by using the download links found in the Release History section.
 If you do so, you also have to show a link to this forum thread using the following url:[code]http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2535044[/code]
 However, you can try to contact me (PM) and ask for an individual permission.[/p]
 [/spoiler]
-
-
+[p][/p]
 [p][b]Videos:[/b][/p]
-
-
-This is a (german) mod demo made by myself:
+[p][/p]
+[p]This is a (german) mod demo made by myself:
 [media]https://www.youtube.com/embed/8eU8Lhe5eIs[/media]
-
-
+[/p]
+[p]
 Hey, you have made some mod review about TNT-Rainmaker? Tell me about it!
-
+[/p]
 [p][represent][/p]
