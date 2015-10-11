@@ -44,15 +44,13 @@ and hell breaks loose.
 [/list]
 [/list]
 [/p]
-[p][b]Latest Changes (2.2.0):[/b][/p]
+[p][b]Latest Changes (2.2.1):[/b][/p]
 [list]
-[*]configurable by config file  
-[*]default settings are loaded from config file
-[*]TNT rain can be restricted to certain dimenstions (via config file)
+[*]Fix: default settings are not loaded on startup  
 [/list]
 [p][b]Download:[/b][/p]
 [list]
-[*][url=http://www.mediafire.com/download/ftdzmu6ygmrfqab/tnt-rainmaker-1.8-2.2.0.jar]TNT-Rainmaker 2.2.0[/url]
+[*][url=http://www.mediafire.com/download/282l7cfml88a553/tnt-rainmaker-1.8-2.2.1.jar]TNT-Rainmaker 2.2.1[/url]
 [/list]
 [p][b]Requirements:[/b][/p]
 [list]
@@ -63,7 +61,7 @@ and hell breaks loose.
 [spoiler=How to Install][b]Download[/b]
 [numlist]
 [*][url=http://files.minecraftforge.net]Forge (Installer!) 11.14.3[/url] [i](Version 11.14.3.1450 did the job for me)[/i]
-[*][url=http://www.mediafire.com/download/ftdzmu6ygmrfqab/tnt-rainmaker-1.8-2.2.0.jar]TNT-Rainmaker 2.2.0[/url]
+[*][url=http://www.mediafire.com/download/282l7cfml88a553/tnt-rainmaker-1.8-2.2.1.jar]TNT-Rainmaker 2.2.1[/url]
 [/numlist]
 [b]Singleplayer:[/b]
 [numlist]
@@ -204,6 +202,10 @@ You are welcome to contribute source code to this mod via [url=https://github.co
 [/spoiler]
 [spoiler=Release History]
 [list]
+[*][1.8] [url=http://www.mediafire.com/download/282l7cfml88a553/tnt-rainmaker-1.8-2.2.1.jar]TNT-Rainmaker 2.2.1[/url]
+[list]
+[*]Fix: default settings are not loaded on startup  
+[/list]
 [*][1.8] [url=http://www.mediafire.com/download/ftdzmu6ygmrfqab/tnt-rainmaker-1.8-2.2.0.jar]TNT-Rainmaker 2.2.0[/url]
 [list]
 [*]configurable by config file  
