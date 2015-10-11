@@ -51,6 +51,13 @@ public class TntRainmaker {
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) throws Exception {
     configuration = new TntConfiguration(event.getSuggestedConfigurationFile());
+    configureRain();
+  }
+
+  private void configureRain() {
+    rain.setChance(configuration.getDefaultChance());
+    rain.setSize(configuration.getDefaultArea());
+    rain.setDrops(configuration.getDefaultDrops());
   }
 
   @EventHandler
