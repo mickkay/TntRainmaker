@@ -20,12 +20,12 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "1.9.4-2.5.0"
+version = "1.10-2.6.0"
 group= "mickkay.tntrainmaker" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "tnt-rainmaker"
 
 minecraft {
-    version = "1.9.4-12.17.0.1976"
+    version = "1.10-12.18.0.2000-1.10.0"
     runDir = "run"
 
     // the mappings can be changed at any time, and must be in the following format.
