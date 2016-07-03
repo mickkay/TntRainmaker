@@ -2,6 +2,9 @@ package mickkay.tntrainmaker;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -14,11 +17,9 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 @Mod(modid = TntRainmaker.ID, name = TntRainmaker.NAME, version = TntRainmaker.VERSION,
-    acceptableRemoteVersions = "*")
+    acceptableRemoteVersions = "*",
+    updateJSON = "https://raw.githubusercontent.com/mickkay/TntRainmaker/master/versions.json")
 public class TntRainmaker {
 
   public static final String NAME = "TNT-Rainmaker";
