@@ -31,7 +31,7 @@ public class TntCommand implements ICommand {
   }
 
   @Override
-  public String getName() {
+  public String getCommandName() {
     return "tnt";
   }
 
@@ -41,12 +41,12 @@ public class TntCommand implements ICommand {
   }
 
   @Override
-  public List getAliases() {
+  public List getCommandAliases() {
     return aliases;
   }
 
   @Override
-  public boolean canCommandSenderUse(ICommandSender sender) {
+  public boolean canCommandSenderUseCommand(ICommandSender sender) {
     // TODO check is this is sufficient and we can remove the check in execute
     return isCommandAllowed(sender);
   }
@@ -57,17 +57,17 @@ public class TntCommand implements ICommand {
   }
 
   @Override
-  public int compareTo(Object arg0) {
+  public int compareTo(ICommand arg0) {
     return 0;
   }
 
   boolean isCommandAllowed(ICommandSender sender) {
-    boolean isOp = sender.canUseCommand(2, "");
+    boolean isOp = sender.canCommandSenderUseCommand(2, "");
     return isOp;
   }
 
   @Override
-  public void execute(ICommandSender sender, String[] args) throws CommandException {
+  public void processCommand(ICommandSender sender, String[] args) throws CommandException {
     MinecraftServer server = MinecraftServer.getServer();
     // check if we can remove this check because we implemented canCommandSenderUse correctly
     if (!isCommandAllowed(sender)) {
