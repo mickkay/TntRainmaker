@@ -44,25 +44,25 @@ and hell breaks loose.
 [/list]
 [/list]
 [/p]
-[p][b]Latest Changes (2.4.0):[/b][/p]
+[p][b]Latest Changes (2.5.0):[/b][/p]
 [list]
-[*]Upgraded to Minecraft 1.9
-[*]Upgraded to Forge 12.16.1.1887
+[*]Upgraded to Minecraft 1.9.4
+[*]Upgraded to Forge 12.17.0.1976
 [/list]
 [p][b]Download:[/b][/p]
 [list]
-[*][url=http://www.mediafire.com/download/0xx63bh81fp0ryg/tnt-rainmaker-1.9-2.4.0.jar]TNT-Rainmaker 2.4.0[/url]
+[*][url=http://www.mediafire.com/download/1oh6z3cz3s4lcuh/tnt-rainmaker-1.9.4-2.5.0.jar]TNT-Rainmaker 2.5.0[/url]
 [/list]
 [p][b]Requirements:[/b][/p]
 [list]
-[*]This mod has been created for Minecraft 1.9
-[*]and Minecraft Forge 12.16.1
+[*]This mod has been created for Minecraft 1.9.4
+[*]and Minecraft Forge 12.17.0
 [/list]
 [p][i]You can find links to all versions inside the Release History section below.[/i][/p]
 [spoiler=How to Install][b]Download[/b]
 [numlist]
-[*][url=http://files.minecraftforge.net]Forge (Installer!) 12.16.1[/url] [i](Version 12.16.1.1887 did the job for me)[/i]
-[*][url=http://www.mediafire.com/download/0xx63bh81fp0ryg/tnt-rainmaker-1.9-2.4.0.jar]TNT-Rainmaker 2.4.0[/url]
+[*][url=http://files.minecraftforge.net]Forge (Installer!) 12.17.0[/url] [i](Version 12.17.0.1976 did the job for me)[/i]
+[*][url=http://www.mediafire.com/download/1oh6z3cz3s4lcuh/tnt-rainmaker-1.9.4-2.5.0.jar]TNT-Rainmaker 2.5.0[/url]
 [/numlist]
 [b]Singleplayer:[/b]
 [numlist]
@@ -203,6 +203,11 @@ You are welcome to contribute source code to this mod via [url=https://github.co
 [/spoiler]
 [spoiler=Release History]
 [list]
+[*][1.9.4] [url=http://www.mediafire.com/download/1oh6z3cz3s4lcuh/tnt-rainmaker-1.9.4-2.5.0.jar]TNT-Rainmaker 2.5.0[/url]
+[list]
+[*]Upgraded to Minecraft 1.9.4
+[*]Upgraded to Forge 12.17.0.1976
+[/list]
 [*][1.9] [url=http://www.mediafire.com/download/0xx63bh81fp0ryg/tnt-rainmaker-1.9-2.4.0.jar]TNT-Rainmaker 2.4.0[/url]
 [list]
 [*]Upgraded to Minecraft 1.9

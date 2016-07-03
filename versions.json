@@ -1,12 +1,17 @@
 {
     "homepage": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2535044",
     "promos": {
+        "1.9.4-latest": "1.9.4-2.5.0",
+        "1.9.4-recommended": "1.9.4-2.5.0",
         "1.9-latest": "1.9-2.4.0",
         "1.9-recommended": "1.9-2.4.0",
         "1.8.9-latest": "1.8.9-2.3.0",
         "1.8.9-recommended": "1.8.9-2.3.0",
         "1.8-latest": "1.8-2.2.1",
         "1.8-recommended": "1.8-2.2.1"
+    },
+    "1.9.4": {
+        "1.9.4-2.5.0": "* Upgraded to MC 1.9.4\n"
     },
     "1.9": {
         "1.9-2.4.0": "* Upgraded to MC 1.9\n"
