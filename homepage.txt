@@ -25,43 +25,45 @@ and hell breaks loose.
 [p][i]You can find a brief description of all command options inside the Command Manual section below.[/i][/p]
 [p]
 
-[p][b]TNT-Rainmaker runs in:[/b][/p] 
+[p][b]TNT-Rainmaker runs in:[/b][/p]
 [list]
 [*][b]Singleplayer[/b]:[list]
-[*]You need a client-side installation of Forge and TNT-Rainmaker. 
+[*]You need a client-side installation of Forge and TNT-Rainmaker.
 [*]Make sure that you play a world created with "Allow Cheats: ON", or you won't be allowed to use the tnt command.
 [/list]
 [*][b]Multiplayer, Minecraft 1.7.10[/b]:[list]
-[*]You need a server-side installation of Forge and TNT-Rainmaker. 
-[*]You need a client-side installation of Forge. No client-side installation of TNT-Rainmaker required. 
+[*]You need a server-side installation of Forge and TNT-Rainmaker.
+[*]You need a client-side installation of Forge. No client-side installation of TNT-Rainmaker required.
 [*]Make sure that you have operator privileges, or you won't be allowed to use the tnt command.
 [/list]
 [*][b]Multiplayer, Minecraft 1.8[/b]:[list]
-[*]You need a server-side installation of Forge and TNT-Rainmaker. 
+[*]You need a server-side installation of Forge and TNT-Rainmaker.
 [*]No client-side installation of Forge or TNT-Rainmaker required.
 [*][color=#ff4400]Works perfectly fine with vanilla clients![/color]
 [*]Make sure that you have operator privileges, or you won't be allowed to use the tnt command.
 [/list]
 [/list]
 [/p]
-[p][b]Latest Changes (2.2.1):[/b][/p]
+[p][b]Latest Changes (2.3.0):[/b][/p]
 [list]
-[*]Fix: default settings are not loaded on startup  
+[*]Upgraded to Minecraft 1.8.9
+[*]Upgraded to Forge 11.15.1.1722
+[*]Added version checking support
 [/list]
 [p][b]Download:[/b][/p]
 [list]
-[*][url=http://www.mediafire.com/download/282l7cfml88a553/tnt-rainmaker-1.8-2.2.1.jar]TNT-Rainmaker 2.2.1[/url]
+[*][url=http://www.mediafire.com/download/vcf8l6i39u49cb3/tnt-rainmaker-1.8.9-2.3.0.jar]TNT-Rainmaker 2.3.0[/url]
 [/list]
 [p][b]Requirements:[/b][/p]
 [list]
-[*]This mod has been created for Minecraft 1.8
-[*]and Minecraft Forge 11.14
+[*]This mod has been created for Minecraft 1.8.9
+[*]and Minecraft Forge 11.15.1
 [/list]
 [p][i]You can find links to all versions inside the Release History section below.[/i][/p]
 [spoiler=How to Install][b]Download[/b]
 [numlist]
-[*][url=http://files.minecraftforge.net]Forge (Installer!) 11.14.3[/url] [i](Version 11.14.3.1450 did the job for me)[/i]
-[*][url=http://www.mediafire.com/download/282l7cfml88a553/tnt-rainmaker-1.8-2.2.1.jar]TNT-Rainmaker 2.2.1[/url]
+[*][url=http://files.minecraftforge.net]Forge (Installer!) 11.15.1[/url] [i](Version 11.15.1.1722 did the job for me)[/i]
+[*][url=http://www.mediafire.com/download/vcf8l6i39u49cb3/tnt-rainmaker-1.8.9-2.3.0.jar]TNT-Rainmaker 2.3.0[/url]
 [/numlist]
 [b]Singleplayer:[/b]
 [numlist]
@@ -83,7 +85,7 @@ and hell breaks loose.
 [b]A Note to Server Owners[/b]
 For multiplayer you have to install TNT-Rainmaker only on the server.
 No client-side installation of TNT-Rainmaker is needed.
-A client-side installation of Forge is only required for Minecraft 1.7.10. 
+A client-side installation of Forge is only required for Minecraft 1.7.10.
 Since Minecraft 1.8 no Forge is required on the client.
 [/spoiler]
 [spoiler=Command Manual]
@@ -162,10 +164,10 @@ Defines the number of drops that are spawned together in a single shower. Defaul
 [b]Example: Set drops to 10[/b]
 [p][code]I:drops=10[/code][/p]
 [p][/p]
-[size=20][b]Dimensions Category:[/b][/size] 
+[size=20][b]Dimensions Category:[/b][/size]
 [p][/p]
 [p][size=16][b]S:restrictions[/b][/size][/p]
-Defines the dimensions to which the TNT rain is restricted to. 
+Defines the dimensions to which the TNT rain is restricted to.
 [b]Example: Allow all but The Nether[/b]
 [p][code]S:restrictions <
     ALLOW *
@@ -202,13 +204,19 @@ You are welcome to contribute source code to this mod via [url=https://github.co
 [/spoiler]
 [spoiler=Release History]
 [list]
+[*][1.8.9] [url=http://www.mediafire.com/download/vcf8l6i39u49cb3/tnt-rainmaker-1.8.9-2.3.0.jar]TNT-Rainmaker 2.3.0[/url]
+[list]
+[*]Upgraded to Minecraft 1.8.9
+[*]Upgraded to Forge 11.15.1.1722
+[*]Added version checking support
+[/list]
 [*][1.8] [url=http://www.mediafire.com/download/282l7cfml88a553/tnt-rainmaker-1.8-2.2.1.jar]TNT-Rainmaker 2.2.1[/url]
 [list]
-[*]Fix: default settings are not loaded on startup  
+[*]Fix: default settings are not loaded on startup
 [/list]
 [*][1.8] [url=http://www.mediafire.com/download/ftdzmu6ygmrfqab/tnt-rainmaker-1.8-2.2.0.jar]TNT-Rainmaker 2.2.0[/url]
 [list]
-[*]configurable by config file  
+[*]configurable by config file
 [*]default settings are loaded from config file
 [*]TNT rain can be restricted to certain dimenstions (via config file)
 [/list]
@@ -221,12 +229,12 @@ You are welcome to contribute source code to this mod via [url=https://github.co
 [*][1.8] [url=http://www.mediafire.com/download/fx9sgfns0xln468/tnt-rainmaker-1.8-2.0.0.jar]TNT-Rainmaker 2.0.0[/url]
 [list]
 [*]Upgraded to Minecraft 1.8
-[*]Upgraded to Forge 11.14.3.1450 
-[*]Works also with vanilla clients (Forge is only required on server) 
+[*]Upgraded to Forge 11.14.3.1450
+[*]Works also with vanilla clients (Forge is only required on server)
 [/list]
 [*][1.7.10] [url=http://www.mediafire.com/download/z88tovrthqm513c/tnt-rainmaker-1.7.10-1.2.0.jar]TNT-Rainmaker 1.2.0[/url]
 [list]
-[*]command "/tnt set" without any property name shows the current TNT-Rainmaker settings for all properties 
+[*]command "/tnt set" without any property name shows the current TNT-Rainmaker settings for all properties
 [/list]
 [*][1.7.10] [url=http://www.mediafire.com/download/j9t5id7of654jc4/tnt-rainmaker-1.7.10-1.1.0.jar]TNT-Rainmaker 1.1.0[/url]
 [list]
