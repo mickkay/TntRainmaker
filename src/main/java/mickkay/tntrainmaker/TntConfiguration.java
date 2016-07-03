@@ -1,15 +1,14 @@
 package mickkay.tntrainmaker;
 
-import gnu.trove.set.TIntSet;
-import gnu.trove.set.hash.TIntHashSet;
-
 import java.io.File;
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
+import gnu.trove.set.TIntSet;
+import gnu.trove.set.hash.TIntHashSet;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-
-import com.google.common.collect.Lists;
 
 public final class TntConfiguration {
 
@@ -26,13 +25,11 @@ public final class TntConfiguration {
   public TntConfiguration(File file) {
     this.file = file;
     config = new Configuration(file, TntRainmaker.VERSION);
-    config.getCategory("defaults").setComment(
-        "This configures the default values of in-game settings");
+    config.getCategory("defaults")
+        .setComment("This configures the default values of in-game settings");
     loadDefaults();
-    config
-        .getCategory("dimensions")
-        .setComment(
-            "For instructions see http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2535044");
+    config.getCategory("dimensions").setComment(
+        "For instructions see http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2535044");
     loadDimensions();
     config.save();
   }
@@ -86,7 +83,7 @@ public final class TntConfiguration {
   private void loadDimensions() {
     Property property =
         config.get("dimensions", "restrictions", new String[] {"DENY *", "ALLOW 0"});
-    property.comment = "TNT rain is restricted to only work for the following dimensions";
+    property.setComment("TNT rain is restricted to only work for the following dimensions");
     String[] lines = property.getStringList();
 
     for (int i = 0; i < lines.length; ++i) {
@@ -120,16 +117,14 @@ public final class TntConfiguration {
   }
 
   private void throwAllowAndDenyWildcardAreOnlyAllowdOnFirstLine() {
-    throw new IllegalArgumentException(
-        String
-            .format(
-                "Bad dimensions configuration in file %s. ALLOW * and DENY * are only allowed on first line!",
-                file.getAbsolutePath()));
+    throw new IllegalArgumentException(String.format(
+        "Bad dimensions configuration in file %s. ALLOW * and DENY * are only allowed on first line!",
+        file.getAbsolutePath()));
   }
 
   private void throwCantParseLine(String line) {
-    throw new IllegalArgumentException(String.format(
-        "Bad dimensions configuration. Can't parse '%s'", line));
+    throw new IllegalArgumentException(
+        String.format("Bad dimensions configuration. Can't parse '%s'", line));
   }
 
   private List<Integer> parseIntArray(String value) {
@@ -143,8 +138,8 @@ public final class TntConfiguration {
 
   private Property getDefaultAreaProperty() {
     Property property = config.get("defaults", "area", 8);
-    property.comment =
-        "The size of the TNT rain cloud measured in chunks. Default is 8 (which means 8x8 chunks)";
+    property.setComment(
+        "The size of the TNT rain cloud measured in chunks. Default is 8 (which means 8x8 chunks)");
     property.setMinValue(TntRain.MIN_AREA);
     property.setMaxValue(TntRain.MAX_AREA);
     int number = property.getInt();
@@ -153,8 +148,8 @@ public final class TntConfiguration {
 
   private Property getDefaultDropsProperty() {
     Property property = config.get("defaults", "drops", 4);
-    property.comment =
-        "The number of drops that are spawned together in a single shower. Default is 4";
+    property.setComment(
+        "The number of drops that are spawned together in a single shower. Default is 4");
     property.setMinValue(TntRain.MIN_DROPS);
     property.setMaxValue(TntRain.MAX_DROPS);
     int number = property.getInt();
@@ -163,8 +158,8 @@ public final class TntConfiguration {
 
   private Property getDefaultChanceProperty() {
     Property property = config.get("defaults", "chance", 20);
-    property.comment =
-        "The probability of a shower, calculated every world tick. Default is 20 (which means 20 percent)";
+    property.setComment(
+        "The probability of a shower, calculated every world tick. Default is 20 (which means 20 percent)");
     property.setMinValue(TntRain.MIN_CHANCE);
     property.setMaxValue(TntRain.MAX_CHANCE);
     int number = property.getInt();

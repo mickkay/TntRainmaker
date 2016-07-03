@@ -6,16 +6,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-public class TntCommand implements ICommand {
+public class TntCommand extends CommandBase {
 
   private static final String ON = "on";
   private static final String OFF = "off";
@@ -36,6 +37,11 @@ public class TntCommand implements ICommand {
   }
 
   @Override
+  public int getRequiredPermissionLevel() {
+    return 2;
+  }
+
+  @Override
   public String getCommandUsage(ICommandSender sender) {
     return "tnt [ on [player]| off [player]| set drops <number> | set area <number> | set chance <number>]";
   }
@@ -46,34 +52,7 @@ public class TntCommand implements ICommand {
   }
 
   @Override
-  public boolean canCommandSenderUseCommand(ICommandSender sender) {
-    // TODO check is this is sufficient and we can remove the check in execute
-    return isCommandAllowed(sender);
-  }
-
-  @Override
-  public boolean isUsernameIndex(String[] p_82358_1_, int p_82358_2_) {
-    return false;
-  }
-
-  @Override
-  public int compareTo(ICommand arg0) {
-    return 0;
-  }
-
-  boolean isCommandAllowed(ICommandSender sender) {
-    boolean isOp = sender.canCommandSenderUseCommand(2, "");
-    return isOp;
-  }
-
-  @Override
-  public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-    MinecraftServer server = MinecraftServer.getServer();
-    // check if we can remove this check because we implemented canCommandSenderUse correctly
-    if (!isCommandAllowed(sender)) {
-      throw new CommandException("commands.generic.permission", args[0]);
-    }
-
+  public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
     if (args.length == 0) {
       replyToSender(sender, "Missing tnt command argument!");
       return;
@@ -91,7 +70,7 @@ public class TntCommand implements ICommand {
   }
 
   private void replyToSender(ICommandSender sender, String message, Object... args) {
-    sender.addChatMessage(new ChatComponentText(String.format(message, args)));
+    sender.addChatMessage(new TextComponentString(String.format(message, args)));
   }
 
   private void performSet(ICommandSender sender, String[] args) throws CommandException {
@@ -204,7 +183,8 @@ public class TntCommand implements ICommand {
   }
 
   @Override
-  public List addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
+  public List getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args,
+      BlockPos pos) {
     if (args.length == 0 || "".equals(args[0])) {
       return asList(SET, ON, OFF);
     }
@@ -262,7 +242,8 @@ public class TntCommand implements ICommand {
     return result;
   }
 
-  private List<EntityPlayer> findPlayersByName(String[] names, World world) throws CommandException {
+  private List<EntityPlayer> findPlayersByName(String[] names, World world)
+      throws CommandException {
     List<EntityPlayer> result = newArrayList();
     nameloop: for (String name : names) {
       for (EntityPlayer p : (List<EntityPlayer>) world.playerEntities) {
